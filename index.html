@@ -88,7 +88,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      position: relative; /* Keeps button strictly localized */
+      position: relative;
     }
 
     .btn {
@@ -124,8 +124,7 @@
       color: white;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
       position: relative;
-      /* Smooth slight transition for translations */
-      transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       transform: translate(0px, 0px);
     }
 
@@ -330,7 +329,7 @@
       });
     });
 
-    // Dodging "No" Button Logic (Uses local translate relative to its slot)
+    // Dodging "No" Button Logic (Moves up to 85px around its slot)
     function dodgeNoButton() {
       failedNoCount++;
       attemptCount.textContent = failedNoCount;
@@ -340,14 +339,15 @@
       const randomTaunt = taunts[Math.floor(Math.random() * taunts.length)];
       noBtn.textContent = randomTaunt;
 
-      // Small random offsets relative to home position (-30px to +30px max)
-      const maxOffset = 30;
-      let offsetX = (Math.random() * (maxOffset * 2)) - maxOffset;
-      let offsetY = (Math.random() * (maxOffset * 2)) - maxOffset;
+      // Random offset relative to home position (40px to 85px max)
+      const maxOffset = 85;
+      const minOffset = 40;
+      
+      const angle = Math.random() * Math.PI * 2;
+      const distance = minOffset + Math.random() * (maxOffset - minOffset);
 
-      // Ensure it always moves at least 15px so it registers as a dodge
-      if (Math.abs(offsetX) < 15) offsetX = offsetX < 0 ? -20 : 20;
-      if (Math.abs(offsetY) < 15) offsetY = offsetY < 0 ? -20 : 20;
+      const offsetX = Math.cos(angle) * distance;
+      const offsetY = Math.sin(angle) * distance;
 
       noBtn.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
 
@@ -376,9 +376,9 @@
         const btnCenterY = btnRect.top + btnRect.height / 2;
         const dist = Math.hypot(e.clientX - btnCenterX, e.clientY - btnCenterY);
 
-        if (dist < 40) {
+        if (dist < 65) {
           dodgeNoButton();
-        } else if (dist > 100) {
+        } else if (dist > 150) {
           returnNoButton();
         }
       }
