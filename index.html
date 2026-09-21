@@ -74,7 +74,7 @@
     /* Button Area Layout */
     .button-group-container {
       position: relative;
-      min-height: 140px;
+      min-height: 160px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -329,7 +329,7 @@
       });
     });
 
-    // Dodging "No" Button Logic (Moves 120px to 180px away)
+    // Dodging "No" Button Logic (Moves 1.5x to 2.0x of the button width)
     function dodgeNoButton() {
       failedNoCount++;
       attemptCount.textContent = failedNoCount;
@@ -339,9 +339,10 @@
       const randomTaunt = taunts[Math.floor(Math.random() * taunts.length)];
       noBtn.textContent = randomTaunt;
 
-      // Medium offset radius (120px to 180px)
-      const minOffset = 120;
-      const maxOffset = 180;
+      // Calculate distance based on button width (120px * 2 = 240px max)
+      const btnWidth = noBtn.offsetWidth || 120;
+      const minOffset = btnWidth * 1.5; // ~180px
+      const maxOffset = btnWidth * 2.0; // ~240px
       
       const angle = Math.random() * Math.PI * 2;
       const distance = minOffset + Math.random() * (maxOffset - minOffset);
@@ -376,9 +377,9 @@
         const btnCenterY = btnRect.top + btnRect.height / 2;
         const dist = Math.hypot(e.clientX - btnCenterX, e.clientY - btnCenterY);
 
-        if (dist < 85) {
+        if (dist < 90) {
           dodgeNoButton();
-        } else if (dist > 220) {
+        } else if (dist > 300) {
           returnNoButton();
         }
       }
