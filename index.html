@@ -74,7 +74,7 @@
     /* Button Area Layout */
     .button-group-container {
       position: relative;
-      min-height: 70px;
+      min-height: 140px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -132,7 +132,7 @@
     .attempts-badge {
       font-size: 0.85rem;
       color: #888;
-      margin-top: 20px;
+      margin-top: 15px;
       min-height: 20px;
       transition: opacity 0.3s ease;
     }
@@ -329,7 +329,7 @@
       });
     });
 
-    // Dodging "No" Button Logic (Moves up to 85px around its slot)
+    // Dodging "No" Button Logic (Moves 120px to 180px away)
     function dodgeNoButton() {
       failedNoCount++;
       attemptCount.textContent = failedNoCount;
@@ -339,9 +339,9 @@
       const randomTaunt = taunts[Math.floor(Math.random() * taunts.length)];
       noBtn.textContent = randomTaunt;
 
-      // Random offset relative to home position (40px to 85px max)
-      const maxOffset = 85;
-      const minOffset = 40;
+      // Medium offset radius (120px to 180px)
+      const minOffset = 120;
+      const maxOffset = 180;
       
       const angle = Math.random() * Math.PI * 2;
       const distance = minOffset + Math.random() * (maxOffset - minOffset);
@@ -376,9 +376,9 @@
         const btnCenterY = btnRect.top + btnRect.height / 2;
         const dist = Math.hypot(e.clientX - btnCenterX, e.clientY - btnCenterY);
 
-        if (dist < 65) {
+        if (dist < 85) {
           dodgeNoButton();
-        } else if (dist > 150) {
+        } else if (dist > 220) {
           returnNoButton();
         }
       }
