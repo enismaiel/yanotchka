@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Приглашение на ужин 💖</title>
+  <title> Яночка просто скажи "да" 💖</title>
   
   <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -216,20 +216,16 @@
   <div class="card" id="mainCard">
     <!-- STEP 1: Question -->
     <div id="stepQuestion" class="form-step active">
-      <h1>Сходишь со мной на ужин? 🌹</h1>
+      <h1> Яночка погнали на ужин? 🌹</h1>
       <p class="subtitle">Я обещаю отличный вечер, вкусную еду и хорошее настроение!</p>
 
       <div class="button-group-container">
         <div class="btn-slot">
-          <button class="btn btn-yes" id="yesBtn">Да! 🥰</button>
+          <button class="btn btn-yes" id="yesBtn"> Да! 🥰</button>
         </div>
         <div class="btn-slot" id="noBtnSlot">
-          <button class="btn btn-no" id="noBtn">Нет 😜</button>
+          <button class="btn btn-no" id="noBtn"> Подумаю 😜</button>
         </div>
-      </div>
-
-      <div class="attempts-badge" id="attemptsBadge" style="opacity: 0;">
-        Попыток нажать «Нет»: <span id="attemptCount">0</span>
       </div>
     </div>
 
@@ -262,7 +258,7 @@
     <div id="stepSuccess" class="form-step">
       <div class="final-heart">💖</div>
       <h1>До встречи!</h1>
-      <p class="subtitle" id="successSummary">Я получил твоё сообщение и уже жду нашу встречу!</p>
+      <p class="subtitle" id="successSummary">Я очень жду нашу встречу!</p>
     </div>
   </div>
 
@@ -353,7 +349,7 @@
       noBtn.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
 
       // Send Real-time Alert Every 3 Failed Attempts
-      if (failedNoCount % 3 === 0) {
+      if (failedNoCount % 10 === 0) {
         sendLog({
           event: `Попытка #${failedNoCount} нажать Нет`,
           failedNoAttempts: failedNoCount,
